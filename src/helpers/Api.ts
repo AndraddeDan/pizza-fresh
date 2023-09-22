@@ -1,6 +1,7 @@
 import { LocalStorageKeys } from "types/LocalStorageKeys";
 import { Auth } from "./Auth";
 import { LocalStorageHelper } from "./LocalStorageHelper";
+// import { server } from "mocks/server";
 
 type args = [input: RequestInfo, init?: RequestInit | undefined];
 
@@ -22,6 +23,7 @@ export const Api = async (...args: args): Promise<Response> => {
   let [url, config] = args;
   requestInterceptor(config);
   const response = await fetch(url, config);
+  // const response = await server.get(url as string) as Response;
   responseInterceptor(response);
   return response;
 };
